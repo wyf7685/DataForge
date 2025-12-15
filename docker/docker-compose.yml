@@ -1,7 +1,7 @@
 services:
   # 后端服务
   backend:
-    image: ghcr.io/wyf7685/2025-a09/backend:latest
+    image: ghcr.io/wyf7685/dataforge/backend:latest
     restart: unless-stopped
     tty: true
     volumes:
@@ -42,7 +42,7 @@ services:
 
   # 前端服务 (Nginx)
   frontend:
-    image: ghcr.io/wyf7685/2025-a09/frontend:latest
+    image: ghcr.io/wyf7685/dataforge/frontend:latest
     restart: unless-stopped
     ports:
       - '80:80'
@@ -51,7 +51,7 @@ services:
         condition: service_healthy
 
   executor:
-    image: ghcr.io/wyf7685/2025-a09/executor:latest
+    image: ghcr.io/wyf7685/dataforge/executor:latest
     restart: unless-stopped
     volumes:
       - executor_data:/data
@@ -86,7 +86,7 @@ services:
 
   # [可选] 备件预测MCP服务
   # spare_parts_forecast:
-  #   image: ghcr.io/wyf7685/2025-a09/spare-parts-forecast:latest
+  #   image: ghcr.io/wyf7685/dataforge/spare-parts-forecast:latest
   #   restart: unless-stopped
   #   environment:
   #     - APP_HOST=0.0.0.0
@@ -95,7 +95,7 @@ services:
 
   # [可选] 机器故障MCP服务
   # fault_diagnosis:
-  #   image: ghcr.io/wyf7685/2025-a09/fault-diagnosis:latest
+  #   image: ghcr.io/wyf7685/dataforge/fault-diagnosis:latest
   #   restart: unless-stopped
   #   environment:
   #     - APP_HOST=0.0.0.0

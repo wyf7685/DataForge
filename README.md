@@ -15,8 +15,9 @@
 
 - 后端: [uv](https://github.com/astral-sh/uv) + Docker (Desktop if on Windows)
   - 安装后在项目根目录执行 `uv sync`
-  - 构建 CodeExecutor 所用的镜像: `docker build . -f docker/Dockerfile.executor -t $DOCKER_RUNNER_IMAGE`
-  - 或者使用已构建的 CodeExecutor 镜像: `docker pull ghcr.io/wyf7685/dataforge/executor:latest`
+  - 使用已构建的 CodeExecutor 镜像: `docker pull ghcr.io/wyf7685/dataforge/executor:latest`
+  - 或者自行构建镜像: `docker build . -f docker/Dockerfile.executor -t $DOCKER_RUNNER_IMAGE`
+    - 将 `$DOCKER_RUNNER_IMAGE` 替换为你需要的镜像名称和标签
 - [Dremio](https://www.dremio.com/):
   - 使用 docker
     - 安装后在项目根目录执行 `docker compose pull` 和 `docker compose up dremio -d --wait`
@@ -42,6 +43,12 @@ DREMIO_EXTERNAL_NAME=external
 # 后端服务配置
 HOST=0.0.0.0
 PORT=8081
+
+# CodeExecutor 镜像
+# 使用预构建镜像
+DOCKER_RUNNER_IMAGE=ghcr.io/wyf7685/dataforge/executor:latest
+# 或者使用本地构建镜像
+# DOCKER_RUNNER_IMAGE=your_custom_image:tag
 
 # 前端接口配置
 VITE_API_BASE_URL=http://127.0.0.1:8081/api
